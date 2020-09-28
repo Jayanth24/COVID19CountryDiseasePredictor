@@ -15,3 +15,8 @@ Potential results include achieving a high accuracy predictive model for countri
 By having a model to predict total number of cases, one becomes able to isolate individual features, under the assumption of independent, so that analysis of government pandemic policies may better prepare the world for future infectious diseases. 
 
 ### References
+Hale, Webster, Petherick, Phillips, and Kira (2020). Oxford COVID-19 Government Response Tracker - Last updated 28 September, 19:30 (London Time)
+
+“Owid/Covid-19-Data.” GitHub, 21 Apr. 2020, github.com/owid/covid-19-data.
+
+Roser, Max, and Hannah Ritchie. "Coronavirus Disease (COVID-19)." Our World in Data, 4 Mar. 2020, ourworldindata.org/coronavirus.
