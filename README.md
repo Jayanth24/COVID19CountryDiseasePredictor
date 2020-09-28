@@ -6,8 +6,12 @@ Corona-virus disease 2019 is an infectious disease caused by severe acute respir
 Given the health and lock down data available regarding COVID-19, predict the total number of cases a country is to experience over the duration of the pandemic.
 
 ### Methods
+
+
 ### Potential Results
 Potential results include achieving a high accuracy predictive model for countries still facing the pandemic, allowing for the variation of the Government Stringency Index to in order to understand how effective differing lock downs were, and developing a second model to predict GDP loss in order to find the happy medium between lives saved and GDP losses.
 
 ### Discussion
+By having a model to predict total number of cases, one becomes able to isolate individual features, under the assumption of independent, so that analysis of government pandemic policies may better prepare the world for future infectious diseases. 
+
 ### References
