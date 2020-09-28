@@ -7,5 +7,7 @@ Given the health and lock down data available regarding COVID-19, predict the to
 
 ### Methods
 ### Potential Results
+Potential results include achieving a high accuracy predictive model for countries still facing the pandemic, allowing for the variation of the Government Stringency Index to in order to understand how effective differing lock downs were, and developing a second model to predict GDP loss in order to find the happy medium between lives saved and GDP losses.
+
 ### Discussion
 ### References
