@@ -6,7 +6,11 @@ Corona-virus disease 2019 is an infectious disease caused by severe acute respir
 Given the health and lock down data available regarding COVID-19, predict the total number of cases a country is to experience over the duration of the pandemic.
 
 ### Methods
+We begin by clustering countries based on attributes such as size, population, density, and other relevant features in order to make sensible comparisons - it is highly unlikely there exists a one-size-fits-all solution due to the wildly differing situations unique to each country. 
 
+Within each cluster, we will see which countries fared relatively better. We will pay special attention to their lockdown policy - how stringent it was, when it was enacted, and the situation of the pandemic at the introduction of these measures. By doing so, we will be able to a build regression models to to better suggest a social policy for a new country that is similar to the cluster that could help reduce the effects of this virus.
+
+Given enough time, we would also like to examine how to formulate the best policy to both protect lives and the economy. Within each cluster, we will look at the GDP of the countries and how it fared as the pandemic took hold. We are particularly interested in see how the GDP reacted to public policy (if any), and how it fluctuated with the number of cases. We can leverage this new model with the regression model project number of cases and deaths to strike a balance between halting the spread of pandemic with the least amount of economic effect. 
 
 ### Potential Results
 Potential results include achieving a high accuracy predictive model for countries still facing the pandemic, allowing for the variation of the Government Stringency Index to in order to understand how effective differing lock downs were, and developing a second model to predict GDP loss in order to find the happy medium between lives saved and GDP losses.
