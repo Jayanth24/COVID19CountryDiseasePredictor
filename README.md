@@ -21,9 +21,9 @@ To group similar countries together, we used the KMeans clustering technique, th
 
 First, we applied the KMeans algorithm in the Standard way, by considering all dataset features for every country in computing the centroids. We used the Elbow Method in this instance to deterime the optimal number of clusters needed in this case. From this analysis, we concluded that using 5 clusters led to KMeans obtaining the best results. For this approach, we generated plots of the number of clusters versus inertia value (sum of squared distances of samples to their closest cluster center), as well as the corresponding cluster assignment for the best (5) cluster number (using PCA for dimensionality reduction). These visualizations are shown below:
 
-![Elbow Method for Optimal Number of Clusters](../master/clusteringImages/image1.png)
+![Elbow Method for Optimal Number of Clusters](clusteringImages/image1.png)
 
-![Clustering Distribution for ideal 5 Clusters](../master/clusteringImages/image2.png)
+![Clustering Distribution for ideal 5 Clusters](clusteringImages/image2.png)
 
 In addition, we also decided to apply dimensionality reduction on our data, and see if the performance of the KMeans algorithm on the resulting feature-reduced subset increased. This feature reduction was performed in 2 ways. The first method we employed was simply to consider all possible subsets of all features in our data, for every datapoint. Since there were 8 total features, this meant choosing all combinations of 1 feature, all combinations of 2 features, all combinations of 3 features, and so on. We used the itertools package in Python to generate a combination list (in terms of feature indices) of all possible features. 
 
@@ -31,21 +31,21 @@ For each combination, we sliced our data to consider only these features. We the
 
 Finally, within each total number of features (1 to 8), we identified the feature subset that produced the clustering with the maximum silhouette score (for every cluster number from 2 to 50). We plotted these results on a graph, where the x-axis represented the number of clusters, and the y-axis represented the silhouette score. On this graph, data points were considered one of eight colors, to indicate the total number of features of the max clustering. This graph is shown below:
 
-![Number of Clusters v. Max Silhouette Score (for all number of features)](../master/clusteringImages/image3.png)
+![Number of Clusters v. Max Silhouette Score (for all number of features)](clusteringImages/image3.png)
 
 From the graph, it was clear that considering only 1 feature produced clusterings with the maximum silhouette score, for every number of clusters. As such, within all clusterings that were generated from 1 feature (there were only 392 such clusterings, one for each individual feature and number of clusters), we determined the feature and number of clusters that produced the clustering with the maximum silhouette score was 'Population' and 2 clusters, respectively (with a silhouette score of 0.9691749073425401). For this clustering ('Population' and 2 clusters), we obtained the corresponding clustering assignment on the entire dataset (with all features). A visualization of this assignment is shown below:
 
-![Clustering Distribution for 'Population', 2 Clusters](../master/clusteringImages/image4.png)
+![Clustering Distribution for 'Population', 2 Clusters](clusteringImages/image4.png)
 
 The second method that we applied was using PCA to reduce the number of features. Instead of considering all possible subsets for every feature number (1 to 8), for each feature number, we considered a single dataset that retained the maximum variance of the original data, which we accomplished via Principal Component Analysis. In this case, for every feature number (from 1 to 8), we used PCA to reduce the number of features to that feature number, and then applied the KMeans algorithm on this reduced dataset as before, varying the number of clusters from 2 to 50. We also used the Silhouette Score to evaluate the goodness of the clustering for every assignment.
 
 We then created a similar graph as before, where we varied the number of clusters from 2 to 50 on the X-axis and the Silhouette Score (no need for max Silhouette Score, since there was only one clustering per number of features and cluster number) on the Y-axis, color-coding the data points to indicate the number of reduced features of the data. We noticed that, irrespective of the number of reduced features, the Silhouette Score of the clustering assignment remained essentially the same (up to the thousandths place), for all number of clusters. As such, there is only one color on the visualization below (due to the considerable overlap between all feature numbers):
 
-![Number of Clusters v. Silhouette Score (for all number of reduced features)](../master/clusteringImages/image5.png)
+![Number of Clusters v. Silhouette Score (for all number of reduced features)](clusteringImages/image5.png)
 
 Using NumPy functions, we then obtained the (number of reduced features, number of clusters) pair that produced the clustering with the maximum Silhouette Score. The resulting pair that was obtained was (1 reduced feature, 1 cluster), which produced a maximum Silhouette score of 0.9691749073272797). For this clustering (1 reduced feature and 2 clusters), we generated the corresponding cluster assignment on the entire dataset (with all features). A visualization of this assignment is shown below.
 
-![Clustering Distribution for 1 Reduced Feature, 2 Clusters](../master/clusteringImages/image6.png)
+![Clustering Distribution for 1 Reduced Feature, 2 Clusters](clusteringImages/image6.png)
 
 In conclusion, we see that, from our three feature selection approaches, considering all features (approach 1) produced a clustering assignment with 5 clusters, and performing dimensionality reduction (feature subsets and PCA, approaches 2 and 3) produced identical clustering assignments (with marginal silhouette score difference) with 2 clusters. From the visualizations, it is clear that the featured reduced clusterings are more optimal, in terms of both the maximum Silhouette Score as well as the distances of the clusters from each other. As such, based on this ideal assignment, we will partition our countries into 2 datasets and apply separate Linear Regression models to each dataset. These techniques are discussed more in the Supervised Learning Section.
 
