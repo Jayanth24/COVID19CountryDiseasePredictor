@@ -7,7 +7,7 @@ Given the health and lock down data[2] available regarding COVID-19, predict the
 
 ### Data Collection
 
-Our data is obtained from the 'Our World in Data' dataset from Oxford's COVID-19 Government Response Tracker (available on GitHub). This dataset is a representation of the attributes of various countries that have gone through COVID-19 cases. Each country measures contains 8 total features, all of which are combined by a per-determined formula to determine the Government Stringency Index, or the severity of the COVID-19 spread in the particular country. These features are as follows: Population, Population Density, Median Age (of all individuals in country), Aged 65 or older (Number of people in the country), GDP per capita, Cardiovascular Death Rate, Diabetes Prevalence, and Human Development Index. To clean this data in an optimal manner, we perfomed the following pre-processing and feature-selection techniques:
+Our data is obtained from the 'Our World in Data' dataset from Oxford's COVID-19 Government Response Tracker (available on GitHub). This dataset is a representation of the attributes of various countries that have gone through COVID-19 cases. Each country measures contains 8 total features, all of which are combined by a per-determined formula to determine the Government Stringency Index, or the severity of the COVID-19 spread in the particular country. These features are as follows: Population, Population Density, Median Age (of all individuals in country), Aged 65 or older (Number of people in the country), GDP per capita, Cardiovascular Death Rate, Diabetes Prevalence, and Human Development Index. To clean this data in an optimal manner, we performed the following pre-processing and feature-selection techniques:
 
 Space for Data Cleaning Group to talk about their approaches. As per the directions on the website: Make sure to talk about the features and different feature selection approaches.
 
@@ -19,13 +19,13 @@ Our goal in the Unsupervised Learning process is to cluster countries based on a
 
 To group similar countries together, we used the KMeans clustering technique, that has an underlying assumption of circular clustering of data. Principal Component Analysis (PCA) was also used in this algorithm to reduce the number of features for each country to produce optimal visualizations. Finally, the generated KMeans models were evaluated using common metrics and scores such as the Elbow Method and the Silhouette Coefficient. To implement most of the Unsupervised Learning process, the Python Sci-Kit Learning package was used (in conjunction with the NumPy and Pandas libraries). In addition, for all techniques, we first standardized the data using StandardScaler() to ensure that features with large numerical values did not disproportionately contribute to the clustering. 
 
-First, we applied the KMeans algorithm in the Standard way, by considering all dataset features for every country in computing the centroids. We used the Elbow Method in this instance to deterime the optimal number of clusters needed in this case. From this analysis, we concluded that using 5 clusters led to KMeans obtaining the best results. For this approach, we generated plots of the number of clusters versus inertia value (sum of squared distances of samples to their closest cluster center), as well as the corresponding cluster assignment for the best (5) cluster number (using PCA for dimensionality reduction). These visualizations are shown below:
+First, we applied the KMeans algorithm in the Standard way, by considering all dataset features for every country in computing the centroids. We used the Elbow Method in this instance to determine the optimal number of clusters needed in this case. From this analysis, we concluded that using 5 clusters led to KMeans obtaining the best results. For this approach, we generated plots of the number of clusters versus inertia value (sum of squared distances of samples to their closest cluster center), as well as the corresponding cluster assignment for the best (5) cluster number (using PCA for dimensionality reduction). These visualizations are shown below:
 
 ![Elbow Method for Optimal Number of Clusters](clusteringImages/image1.png)
 
 ![Clustering Distribution for ideal 5 Clusters](clusteringImages/image2.png)
 
-In addition, we also decided to apply dimensionality reduction on our data, and see if the performance of the KMeans algorithm on the resulting feature-reduced subset increased. This feature reduction was performed in 2 ways. The first method we employed was simply to consider all possible subsets of all features in our data, for every datapoint. Since there were 8 total features, this meant choosing all combinations of 1 feature, all combinations of 2 features, all combinations of 3 features, and so on. We used the itertools package in Python to generate a combination list (in terms of feature indices) of all possible features. 
+In addition, we also decided to apply dimensionality reduction on our data, and see if the performance of the KMeans algorithm on the resulting feature-reduced subset increased. This feature reduction was performed in 2 ways. The first method we employed was simply to consider all possible subsets of all features in our data, for every data point. Since there were 8 total features, this meant choosing all combinations of 1 feature, all combinations of 2 features, all combinations of 3 features, and so on. We used the itertools package in Python to generate a combination list (in terms of feature indices) of all possible features. 
 
 For each combination, we sliced our data to consider only these features. We then applied the KMeans algorithm on this reduced dataset, varying the number of clusters from 2 to 50. We then obtained the assignment of the final clustering, for the specific feature split and cluster number. In addition, to measure quality of the clustering in a more empirical way, we also measured the goodness of the clustering by computing the Silhouette Score of the final assignment. This process was repeated for every total number of features (1 to 8), all possible subsets within every feature number, and all possible number of clusters (2 to 50).
 
@@ -51,15 +51,74 @@ In conclusion, we see that, from our three feature selection approaches, conside
 
 #### Supervised Learning 
 
-Within each cluster, we will see which countries fared relatively better. We will pay special attention to their lockdown policy - how stringent it was, when it was enacted, and the situation of the pandemic at the introduction of these measures. By doing so, we will be able to a build regression models to to better suggest a social policy for a new country that is similar to the cluster that could help reduce the effects of this virus.
+Our goal in the Supervised Learning process is to develop a regression model to predict new deaths from COVID-19. Our development of this model begins with a visual and statistical analysis of our feature set. By better understanding the statistical variation of each feature, and the correlation between features, we set ourselves up for a more informed understanding of the domain prior to model training. This analysis is included below:
 
-Given enough time, we would also like to examine how to formulate the best policy to both protect lives and the economy. Within each cluster, we will look at the GDP of the countries and how it fared as the pandemic took hold. We are particularly interested in seeing how the GDP reacted to public policy (if any), and how it fluctuated with the number of cases. We can leverage this new model with the regression model project number of cases and deaths to strike a balance between halting the spread of pandemic with the least amount of economic effect. 
+What we are trying to predict:
+
+![Country 28 Days since 4/1/2020 vs New Deaths](TrainingImages/Country28Trend.png)
+
+![Country 81 Days since 4/1/2020 vs New Deaths](TrainingImages/Country81Trend.png)
+
+![Country 200 Days since 4/1/2020 vs New Deaths](TrainingImages/Country200Trend.png)
+
+We split our data by 80/20 for training and testing respectively. This yields 167 countries for training and 42 countries for testing. 
+
+A statistical analysis of our training data:
+
+||count|mean|std|min|25%|50%|75%|max|
+|---|---|---|---|---|---|---|---|---|
+|Country (label)|26762.0|1.047587e+02|5.967297e+01|1.000|54.000|1.060000e+02|1.530000e+02|2.090000e+02|
+|Date (label)|26762.0|1.023138e+02|5.898397e+01|1.000|51.000|1.020000e+02|1.530000e+02|2.040000e+02|
+|new_cases|26762.0|1.194505e+03|5.748082e+03|-8261.000|3.000|5.700000e+01|4.320000e+02|9.757000e+04|
+|new_deaths|26762.0|3.261430e+01|1.525499e+02|-1918.000|0.000|1.000000e+00|7.000000e+00|4.928000e+03|
+|new_tests|26762.0|1.420623e+04|7.878015e+04|-3743.000|0.000|4.100000e+01|4.321750e+03|1.492409e+06|
+|stringency_index|26762.0|5.960808e+01|2.610358e+01|0.000|43.520|6.528000e+01|8.009000e+01|1.000000e+02|
+|population|26762.0|4.708915e+07|1.625562e+08|97928.000|3280815.000|1.009927e+07|3.481387e+07|1.439324e+09|
+|population_density|26762.0|2.058378e+02|6.553158e+02|1.980|35.608|8.134700e+01|1.975190e+02|7.915731e+03|
+|median_age|26762.0|3.086748e+01|8.990814e+00|15.100|23.100|3.060000e+01|3.910000e+01|4.820000e+01|
+|aged_65_older|26762.0|8.973122e+00|6.250375e+00|1.144|3.552|6.769000e+00|1.443100e+01|2.704900e+01|
+|gdp_per_capita|26762.0|1.941902e+04|1.962766e+04|661.240|5189.972|1.325495e+04|2.771785e+04|1.169356e+05|
+|cardiovascular_death_rate|26762.0|2.549043e+02|1.177259e+02|79.370|164.905|2.412190e+02|3.226880e+02|7.244170e+02|
+|diabetes_prevalence|26762.0|7.741321e+00|3.851030e+00|0.990|5.180|7.110000e+00|1.008000e+01|2.202000e+01|
+|human_development_index|26762.0|7.196080e-01|1.506658e-01|0.354|0.601|7.510000e-01|8.430000e-01|9.530000e-01|
+
+Following a statistical analysis, we plot a few of the features against our training label to see if any visual correlations could be identified. As expected, new_deaths is strongly correlated to new_cases and new_tests, while other features such as stringency_index and population_density do not display as obvious of a correlation. 
+
+![Cases KDE](VisualAnalysisImages/Date_cases_deaths_kde.png)
+
+![Government KDE](VisualAnalysisImages/deaths_government_kde.png)
+
+Following a visual analysis of our data, each feature is normalized. Then, we trained a linear regression model and a DNN model. Our linear regression model was trained with an Adam optimizer, using a learning rate of 0.1, 100 epochs, a 20% validation split, and was evaluated using absolute mean error. Total train time took 26 seconds.
+
+Finally, we trained a DNN with an Adam optimizer, using a learning rate of 0.001, 100 epochs, a 20% validation split, and was evaluated using absolute mean error. Total train time took 35 seconds. This model includes 6 layers, our features, 3 layers of 64 neurons, and an output layer
+
 
 ### Results
-Potential results include achieving a high accuracy predictive model for countries still facing the pandemic, allowing for the variation of the Government Stringency Index[1] to in order to understand how effective differing lock downs were, and developing a second model to predict GDP loss in order to find the happy medium between lives saved and GDP losses.
+First off, let us examine the loss functions for each model on the training data. Notice how the validation data loss does not decrease with each epoch. This demonstrates an over fitting to the training data. Graphs depicted below:
+
+![Linear Training Loss](ResultsImages/LinearLoss.png)
+
+![DNN Training Loss](ResultsImages/DNNLoss.png)
+
+Next we examine the mean absolute error of the testing data. Notice how the error is much smaller for our testing data than it was for our training data. This should be looked into further for the development of a more general model.
+
+|Model|Mean absolute error [new_deaths]|
+|---|---|
+|linear_model|8.275075|
+|dnn_model|8.240737|
+
+Finally, let us examine the difference between predicted and real results. First this is done by graphing predicted vs real results. Both models demonstrate a direct linear relationship between predicted and real values. Next let us construct a histogram delineating the difference between real and predicted values. From this diagram it is clear the DNN has a tendency to under predict the number of deaths. Finally, allow us to visualize a few predictions of the test data in direct comparison to the real values as plotted against time.
+
+|Linear Regression|DNN|
+|---|---|
+|![Linear True Vs Predicted](ResultsImages/LinearTrueVsPredicted.png)|8.![DNN True Vs Predicted](ResultsImages/DNNTrueVsPredicted.png)|
+|![Linear Prediction Error](ResultsImages/LinearPredictionError.png)|8.![DNN Prediction Error](ResultsImages/DNNPredictionError.png)|
+|![Linear 57 Prediction](ResultsImages/Linear57Prediction.png)|8.![DNN 57 Prediction](ResultsImages/DNN57Prediction.png)|
+|![Linear 137 Prediction](ResultsImages/Linear137Prediction.png)|8.![DNN 137 Prediction](ResultsImages/DNN137Prediction.png)|
+|![Linear 150 Prediction](ResultsImages/Linear150Prediction.png)|8.![DNN 150 Prediction](ResultsImages/DNN150Prediction.png)|
 
 ### Discussion
-By having a model to predict total number of cases, one becomes able to isolate individual features, under the assumption of independent, so that analysis of government pandemic policies may better prepare the world for future infectious diseases. 
+After an observation of the predicted vs real results, it becomes quite clear that the model is thrown off by the noise in data. New deaths spike on various days depending on the country and how deaths are reported. Applying a uniform or gaussian smoothing to our dataset would serve to yield a more consistent and generalized model. 
 
 ### References
 [1] Hale, Webster, Petherick, Phillips, and Kira (2020). Oxford COVID-19 Government Response Tracker - Last updated 28 September, 19:30 (London Time)
