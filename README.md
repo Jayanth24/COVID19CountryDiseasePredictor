@@ -111,11 +111,11 @@ Finally, let us examine the difference between predicted and real results. First
 
 |Linear Regression|DNN|
 |---|---|
-|![Linear True Vs Predicted](ResultsImages/LinearTrueVsPredicted.png)|8.![DNN True Vs Predicted](ResultsImages/DNNTrueVsPredicted.png)|
-|![Linear Prediction Error](ResultsImages/LinearPredictionError.png)|8.![DNN Prediction Error](ResultsImages/DNNPredictionError.png)|
-|![Linear 57 Prediction](ResultsImages/Linear57Prediction.png)|8.![DNN 57 Prediction](ResultsImages/DNN57Prediction.png)|
-|![Linear 137 Prediction](ResultsImages/Linear137Prediction.png)|8.![DNN 137 Prediction](ResultsImages/DNN137Prediction.png)|
-|![Linear 150 Prediction](ResultsImages/Linear150Prediction.png)|8.![DNN 150 Prediction](ResultsImages/DNN150Prediction.png)|
+|![Linear True Vs Predicted](ResultsImages/LinearTrueVsPredicted.png)|![DNN True Vs Predicted](ResultsImages/DNNTrueVsPredicted.png)|
+|![Linear Prediction Error](ResultsImages/LinearPredictionError.png)|![DNN Prediction Error](ResultsImages/DNNPredictionError.png)|
+|![Linear 57 Prediction](ResultsImages/Linear57Prediction.png)|![DNN 57 Prediction](ResultsImages/DNN57Prediction.png)|
+|![Linear 137 Prediction](ResultsImages/Linear137Prediction.png)|![DNN 137 Prediction](ResultsImages/DNN137Prediction.png)|
+|![Linear 150 Prediction](ResultsImages/Linear150Prediction.png)|![DNN 150 Prediction](ResultsImages/DNN150Prediction.png)|
 
 ### Discussion
 After an observation of the predicted vs real results, it becomes quite clear that the model is thrown off by the noise in data. New deaths spike on various days depending on the country and how deaths are reported. Applying a uniform or gaussian smoothing to our dataset would serve to yield a more consistent and generalized model. 
