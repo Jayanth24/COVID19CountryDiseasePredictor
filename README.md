@@ -122,6 +122,8 @@ After an observation of the predicted vs real results, it becomes quite clear th
 
 Another point for improvement is our data currently contains a few negative values for new_cases, new_tests, and new_deaths. We are unsure what this represents within the data and thus have left these values in for now. This could be why our current model sometimes predicts people coming back to life as represented by negative deaths.
 
+Some of our countries included never experienced a death from COVID-19. A discussion should be held to determine if these countries should be included, as they could provide insight in to a more general model, but at the same time could be lowering the accuracy for countries that do experience death from COVID-19.
+
 ### References
 [1] Hale, Webster, Petherick, Phillips, and Kira (2020). Oxford COVID-19 Government Response Tracker - Last updated 28 September, 19:30 (London Time)
 
