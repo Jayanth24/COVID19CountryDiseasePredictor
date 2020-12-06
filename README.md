@@ -74,7 +74,7 @@ We then created a similar graph as before, where we varied the number of cluster
 
 ![Number of Clusters v. Silhouette Score (for all number of reduced features)](clusteringImages/image5.png)
 
-Using NumPy functions, we then obtained the (number of reduced features, number of clusters) pair that produced the clustering with the maximum Silhouette Score. The resulting pair that was obtained was (1 reduced feature, 1 cluster), which produced a maximum Silhouette score of 0.9691749073272797). For this clustering (1 reduced feature and 2 clusters), we generated the corresponding cluster assignment on the entire dataset (with all features). A visualization of this assignment is shown below.
+Using NumPy functions, we then obtained the (number of reduced features, number of clusters) pair that produced the clustering with the maximum Silhouette Score. The resulting pair that was obtained was (1 reduced feature, 2 clusters), which produced a maximum Silhouette score of 0.9691749073272797). For this clustering (1 reduced feature and 2 clusters), we generated the corresponding cluster assignment on the entire dataset (with all features). A visualization of this assignment is shown below.
 
 ![Clustering Distribution for 1 Reduced Feature, 2 Clusters](clusteringImages/image6.png)
 
