@@ -92,7 +92,7 @@ What we are trying to predict:
 
 ![Country 200 Days since 4/1/2020 vs New Deaths](TrainingImages/Country200Trend.png)
 
-We split our data by 80/20 for training and testing respectively. This yields 167 countries for training and 42 countries for testing. 
+We split our data with a 70/15/15 split for training, testing, and validation respectively. This yields 110 countries for training, and 23 countries for both testing and validation. 
 
 A statistical analysis of our training data:
 
@@ -153,7 +153,7 @@ After an observation of the predicted vs real results, it becomes quite clear th
 
 Another point for improvement is our data currently contains a few negative values for new_cases, new_tests, and new_deaths. We are unsure what this represents within the data and thus have left these values in for now. This could be why our current model sometimes predicts people coming back to life as represented by negative deaths.
 
-Some of our countries included never experienced a death from COVID-19. A discussion should be held to determine if these countries should be included, as they could provide insight in to a more general model, but at the same time could be lowering the accuracy for countries that do experience death from COVID-19.
+Some of our countries included never experienced a death from COVID-19. A discussion was held to determine if these countries should be included, as they could provide insight in to a more general model, but at the same time could be lowering the accuracy for countries that do experience death from COVID-19. We ultimately decided to remove these countries, as the advantage of improved accuracy far outweighted the tradeoff of model insight.
 
 As of current, all of our data begins on April 1st 2020. This decision was made to clean the data, but could be limiting our model in the prediction of a virus's lifetime. Perhaps a more generalized model would begin each country's timeline when the first case was discovered. 
 
