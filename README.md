@@ -157,6 +157,13 @@ Some of our countries included never experienced a death from COVID-19. A discus
 
 As of current, all of our data begins on April 1st 2020. This decision was made to clean the data, but could be limiting our model in the prediction of a virus's lifetime. Perhaps a more generalized model would begin each country's timeline when the first case was discovered. 
 
+### Conclusions 
+Some successes that we had on this COVID-19 Machine Learning project are as follows. We were able to clean the noisy and NaN values present in our original dataset to remove those countries containing large amounts of invalid or missing data. Additionally, to a certain degree of optimization, we determined the number of clusters (along with the relevant features) that would partition our country set into valid subgroups, and developed Supervised Learning Models - Linear Regression and Deep Neural Network (DNN) - to accurately predict new COVID-19 related deaths for various countries.
+
+Additionally, there are some extensions on this project that we can make if we were to pursue it in the future. One possible addition would be to incorporate the economics of the countries in our dataset, and use the resulting financial conclusions to predict the impact of COVID-19 on country economy (in addition to predicting new deaths). Another possible addition would be to further clean our dataset using different smoothing techniques, and continue to optimize the performance of our models by varying the specific features and cluster assignments used in the prediction algorithms. 
+
+Overall, our group enjoyed working on this project over the course of the semester, and learned a lot about how to apply Unsupervised and Supervised Machine Learning Algorithms in a practical setting.
+
 ### References
 [1] Hale, Webster, Petherick, Phillips, and Kira (2020). Oxford COVID-19 Government Response Tracker - Last updated 28 September, 19:30 (London Time)
 
